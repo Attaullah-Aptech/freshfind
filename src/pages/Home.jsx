@@ -11,6 +11,7 @@ import BookmarksDrawer from "../components/BookmarksDrawer";
 
 import marketsData from '../data/markets.json';
 import produceData from '../data/produce.json';
+import SeasonalRecommendationSection from '../components/SeasonalRecommendation';
 
 export default function Home() {
   const [activeNav, setActiveNav] = useState('home');
@@ -88,6 +89,11 @@ export default function Home() {
 
       {/* Fresh Produce Feature - Circular Product Hub */}
       <CircularProductFeature />
+      <SeasonalRecommendationSection
+                  bookmarkedIds={bookmarkedProduceIds}
+            onToggleBookmark={handleToggleProduceBookmark}/>
+
+
 
       {/* Sale 68% Off Countdown Section */}
       <SaleCountdownSection />
