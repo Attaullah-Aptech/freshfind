@@ -1,49 +1,69 @@
-import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Leaf, MapPin, Play } from 'lucide-react';
+import './css/HeroRealSection.css';
 
-export default function HeroRealSection({ onExploreClick }) {
+export default function HeroRealSection() {
   return (
     <section className="hero-real-section" id="home">
-      {/* Animated Zoom In / Zoom Out Video-like Ambient Background */}
-      <div className="hero-bg-animated"></div>
-      <div className="hero-overlay-backdrop"></div>
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="hero-video-bg"
+        aria-hidden="true"
+      >
+        <source src="/main-hero-video.mp4" type="video/mp4" />
+        <source src="/assets/main-hero-video.mp4" type="video/mp4" />
+      </video>
 
-      <div className="hero-content-grid">
-        {/* Left Side Content */}
-        <div>
-          <span className="hero-badge-tag">🌿 100% ORGANIC FARM PRODUCED</span>
+      <div className="hero-video-overlay" aria-hidden="true" />
+      <div className="hero-video-grain" aria-hidden="true" />
+      <div className="hero-orbit hero-orbit-one" aria-hidden="true" />
+      <div className="hero-orbit hero-orbit-two" aria-hidden="true" />
+
+      <div className="hero-content-container">
+        <div className="hero-transparent-text-wrapper">
+          <div className="hero-kicker">
+            <span className="hero-kicker-line" />
+            <Leaf size={15} strokeWidth={2.5} />
+            <span>Freshness, found locally</span>
+          </div>
+
+          <span className="hero-badge-tag">
+            <span className="hero-badge-dot" />
+            100% organic farm produce
+          </span>
+
           <h1 className="hero-title-text">
-            Fresh Produce & Local <span>Markets Near You</span>
+            Better food starts
+            <span className="hero-title-accent"> close to home.</span>
           </h1>
+
           <p className="hero-desc-text">
-            Discover community growers, verified market hours, seasonal fruit and vegetable harvests, and farm-to-table organic produce in your neighborhood.
+            Discover community growers, seasonal harvests, and trusted farm-to-table produce from the people who grow it.
           </p>
 
-          <div className="flex gap-4">
+          <div className="hero-actions">
             <button
               className="btn-hero-cta"
               onClick={() => {
                 const el = document.getElementById('trending');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
             >
-              <span>Explore Harvest</span>
+              <span>Explore the harvest</span>
               <ArrowRight size={20} />
             </button>
+            <div className="hero-location">
+              <span className="hero-location-icon"><MapPin size={16} /></span>
+              <span><strong>Made for your neighborhood</strong><small>Find fresh within reach</small></span>
+            </div>
           </div>
         </div>
 
-        {/* Right Side Larger Amoeba Video Container */}
-        <div className="amoeba-video-wrapper">
-          <div className="amoeba-video-frame-large" title="Fresh Organic Harvesting Video">
-            <video
-              src="/assets/From Klickpin.com- 3448137210838714-pin-id-3448137210838714.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-          </div>
+        <div className="hero-video-note">
+          <span className="hero-video-note-icon"><Play size={13} fill="currentColor" /></span>
+          <span>Life from the soil</span>
         </div>
       </div>
     </section>

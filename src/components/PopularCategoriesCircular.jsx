@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import './css/PopularCategoriesCircular.css';
 
 export default function PopularCategoriesCircular({ onSelectCategory }) {
   const allItems = [
-    { title: 'Fruits & Vegetables', type: 'Organic Vegetables', image: '/assets/vegeis.jpg' },
+    { title: 'Fresh Tomatoes', type: 'Premium Tomatoes', image: '/assets/tomato image.jpg' },
+    { title: 'Spinach Harvest', type: 'Leafy Greens', image: '/assets/spinach image.jpg' },
+    { title: 'Farm Beetroot', type: 'Root Vegetables', image: '/assets/beetroot image.jpg' },
+    { title: 'Green Capsicum', type: 'Fresh Capsicum', image: '/assets/capsicum image.jpg' },
     { title: 'Fresh Potatoes', type: 'Organic Vegetables', image: '/assets/fresh potato.jpg' },
-    { title: 'Farm Tomatoes', type: 'Organic Vegetables', image: '/assets/tomato image.jpg' },
-    { title: 'Harvesting', type: 'Fresh Fruits', image: '/assets/harvesting.jpg' },
-    { title: 'Hand Plucked', type: 'Exotic Herbs', image: '/assets/plucking image.jpg' },
-    { title: 'Fresh Berries', type: 'Seasonal Berries', image: '/assets/straberry image.jpg' },
-    { title: 'Organic Baskets', type: 'Organic Vegetables', image: '/assets/basket image.jpg' }
+    { title: 'Organic Basket', type: 'Organic Vegetables', image: '/assets/basket image.jpg' },
+    { title: 'Garden Mix', type: 'Fresh Veg Mix', image: '/assets/mix vegies image.jpg' }
   ];
 
   const [startIndex, setStartIndex] = useState(0);
@@ -23,6 +24,7 @@ export default function PopularCategoriesCircular({ onSelectCategory }) {
   };
 
   const visibleItems = allItems.slice(startIndex, startIndex + 5);
+  const tickerItems = [...visibleItems, ...visibleItems];
 
   return (
     <section className="good-harvest-leaves-section" id="popular-categories">
@@ -45,21 +47,23 @@ export default function PopularCategoriesCircular({ onSelectCategory }) {
             <ChevronLeft size={24} />
           </button>
 
-          <div className="circular-cat-grid w-full">
-            {visibleItems.map((cat, idx) => (
-              <div
-                key={idx}
-                className="circular-cat-item"
-                onClick={() => {
-                  if (onSelectCategory) onSelectCategory(cat.type);
-                }}
-              >
-                <div className="circular-img-box">
-                  <img src={cat.image} alt={cat.title} />
+          <div className="circular-cat-marquee w-full">
+            <div className="circular-cat-track">
+              {tickerItems.map((cat, idx) => (
+                <div
+                  key={`${cat.title}-${idx}`}
+                  className="circular-cat-item"
+                  onClick={() => {
+                    if (onSelectCategory) onSelectCategory(cat.type);
+                  }}
+                >
+                  <div className="circular-img-box">
+                    <img src={cat.image} alt={cat.title} />
+                  </div>
+                  <div className="circular-pill-badge">{cat.title}</div>
                 </div>
-                <div className="circular-pill-badge">{cat.title}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <button
